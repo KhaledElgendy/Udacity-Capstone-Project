@@ -116,6 +116,22 @@ jobs:
           paths:
             - inventory.txt
 
+  build-Docker-Image-and-push-to-DockerHub:
+    docker:
+      - image: circleci/golang:1.15
+        auth:
+          username: khaledelgendy
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t khaledelgendy/capstoneproject:$TAG .
+          docker login -u khaledelgendy -p $DOCKERHUB_PASSWORD
+          docker push khaledelgendy/capstoneproject:$TAG
+
   deploy-backend:
     docker:
       - image: "python:3.7-alpine3.11"
@@ -151,5 +167,7 @@ workflows:
           filters:
             branches:
               only: [main]
-      - deploy-backend:
+      - build-Docker-Image-and-push-to-DockerHub:
           requires: [deploy-Server-Infrastructure]
+      - deploy-backend:
+          requires: [build-Docker-Image-and-push-to-DockerHub]
