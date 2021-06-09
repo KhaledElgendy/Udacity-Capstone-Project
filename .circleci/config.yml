@@ -99,7 +99,7 @@ jobs:
           name: Deploy Server for blue-branch
           command: |
             aws cloudformation deploy \
-              --stack-name "capstone-server" \
+              --stack-name "capstone-server-blue" \
               --template-file .circleci/files/Server.yml \
               --parameter-overrides EnvironmentName=CapstoneProject-blue WebAppServersMinSize=1 WebAppServersMaxSize=4 \
               --tags project=capstone 
