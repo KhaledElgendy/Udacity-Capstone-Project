@@ -152,4 +152,4 @@ workflows:
             branches:
               only: [blue]
       - deploy-backend-blue:
-          requires: [deploy-Server-Infrastructure]
+          requires: [deploy-Server-Infrastructure-blue]
