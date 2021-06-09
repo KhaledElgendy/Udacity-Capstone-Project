@@ -88,7 +88,7 @@ jobs:
             yum -y install tar 
             yum -y install gzip
       - run:
-          name: Deploy Server Infrastructure
+          name: Deploy Server Infrastructure main
           command: |
             aws cloudformation deploy \
               --stack-name "capstone-infra" \
@@ -96,7 +96,7 @@ jobs:
               --parameter-overrides EnvironmentName=CapstoneProject \
               --tags project=capstone 
       - run:
-          name: Deploy Server 
+          name: Deploy Server main
           command: |
             aws cloudformation deploy \
               --stack-name "capstone-server" \
