@@ -134,7 +134,7 @@ jobs:
             apk add --update curl
             apk add --update openssh-client
       - run:
-          name: Configure server
+          name: Configure server blue
           command: |
             ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./.circleci/ansible/inventory.txt ./.circleci/ansible/deploy-backend.yml
 workflows:
