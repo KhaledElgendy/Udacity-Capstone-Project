@@ -121,7 +121,7 @@ jobs:
       - image: circleci/golang:1.15
         auth:
           username: khaledelgendy
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD  # Added to CircleCI Environment Variables
     steps:
       - checkout
       - setup_remote_docker:
