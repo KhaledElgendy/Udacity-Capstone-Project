@@ -150,6 +150,6 @@ workflows:
           requires: [test-backend,scan-backend]
           filters:
             branches:
-              only: [blue]
+              only: [blue-branch]
       - deploy-backend-blue:
           requires: [deploy-Server-Infrastructure-blue]
